@@ -15,7 +15,7 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
-
+        buildConfigField "String", "APP_ENTRANCE_URL", entrances()
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -69,7 +69,17 @@ dependencies {
     implementation 'com.jakewharton.rxbinding4:rxbinding:4.0.0'
 
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    implementation 'com.komayip.android:commonlib:0.0.27'
-    implementation 'android.arch.paging:runtime:1.0.1'
+//    implementation 'com.komayip.android:commonlib:0.0.27'
+//    implementation 'android.arch.paging:runtime:1.0.1'
 
+}
+
+def static entrances() {
+    String entrances = System.getenv("APP_ENTRANCE_URL") ?: ""
+    if (entrances == null || entrances.isEmpty()) {
+        return "\"https://itunes.apple.com\""
+
+    } else {
+        return "\"" + entrances + "\""
+    }
 }
