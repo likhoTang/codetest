@@ -14,6 +14,8 @@ class ResultItem {
     var collectionId:String?=null
     @SerializedName("amgArtistId")
     var amgArtistId:String?=null
+    @SerializedName("artistName")
+    var artistName:String?=null
     @SerializedName("collectionName")
     var collectionName:String?=null
     @SerializedName("collectionCensoredName")
@@ -42,6 +44,13 @@ class ResultItem {
     var releaseDate:String?=null
     @SerializedName("primaryGenreName")
     var primaryGenreName:String?=null
+
+    var isFavorite:Boolean = false
+        get(){
+            field?.let {
+                return field
+            }
+        }
 }
 
 

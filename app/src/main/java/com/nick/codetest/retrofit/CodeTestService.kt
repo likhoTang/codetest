@@ -34,7 +34,7 @@ class CodeTestService {
 
         private val mDomainUrl: String
             get() {
-                Log.e("main domain", BuildConfig.APP_ENTRANCE_URL.split(";").first())
+//                Log.e("main domain", BuildConfig.APP_ENTRANCE_URL.split(";").first())
                 return BuildConfig.APP_ENTRANCE_URL.split(";").first()
             }
 

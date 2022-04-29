@@ -35,13 +35,13 @@ fun <T> Observable<T>.onMainThread(): Observable<T> {
 fun <T> Observable<T>.logoutIfExpired(): Observable<T> {
 
     return this.doOnError { t ->
-        Log.e("logoutIfExpired","${t is HttpException}")
+//        Log.e("logoutIfExpired","${t is HttpException}")
         if (t.isForbidden()) {
-            Log.e("logoutIfExpired","isForbidden")
+//            Log.e("logoutIfExpired","isForbidden")
             CodeTestApplication.LOGOUT_SUBJECT.onNext(true)
         }
         if (t.isUnauthorized()) {
-            Log.e("logoutIfExpired","isUnauthorized")
+//            Log.e("logoutIfExpired","isUnauthorized")
             CodeTestApplication.LOGOUT_SUBJECT.onNext(true)
         }
 //        if (t.isTokenException()) {  //custom exception

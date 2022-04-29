@@ -3,7 +3,11 @@ package com.nick.codetest.application_preferences
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.nick.codetest.entity.ResultItem
 import com.nick.codetest.entity.UserProfile
+import java.text.SimpleDateFormat
+import java.util.ArrayList
 
 /**
  *      Store response data
@@ -135,6 +139,8 @@ class AccountPreferences private constructor(context: Context) {
 
     companion object {
         const val PREFERENCES_FILE = "account"
+
+
 
         // KEY
         private const val USER_ID_KEY = "userId"

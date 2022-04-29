@@ -2,15 +2,39 @@ package com.nick.codetest.application_preferences
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.nick.codetest.CodeTestApplication.Companion.BOOKMARK_SUBJECT
+import com.nick.codetest.entity.ResultItem
+import io.reactivex.rxjava3.subjects.PublishSubject
 import java.text.SimpleDateFormat
+import java.util.ArrayList
 
 class ApplicationPreferences private constructor(context: Context) {
 
     private val preferences: SharedPreferences
+
+    val gson = Gson()
 //    private val passwordStorage: PasswordStorageHelper
 
 
 
+    var bookMarkList:ArrayList<ResultItem>
+        get(){
+            val json: String? = preferences.getString(BOOKMARK, null)
+            json?.let {
+                val type = object : TypeToken<ArrayList<ResultItem?>?>() {}.getType()
+                return gson.fromJson(json, type)
+            }?:return arrayListOf()
+
+        }
+        set(list){
+            val editor = preferences.edit()
+            val json: String = gson.toJson(list)
+            editor.putString(BOOKMARK, json)
+            editor.apply()
+            BOOKMARK_SUBJECT.onNext(list)
+        }
 
     init {
         preferences = context.getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE)
@@ -22,6 +46,9 @@ class ApplicationPreferences private constructor(context: Context) {
 //        editor.putBoolean(IS_PASSWORD_SAVED_KEY, isEnabled)
 //        editor.apply()
 //    }
+    fun saveBookMarkList(data:ArrayList<ResultItem>){
+        bookMarkList = data
+    }
 
     fun disableTrcInitialCheck() {
         val editor = preferences.edit()
@@ -62,6 +89,8 @@ class ApplicationPreferences private constructor(context: Context) {
         const val PREFERENCES_FILE = "settings"
 
 //        private const val LAST_TIME_NOTIFY_DATE = "NOTIFY_DATE"
+        //BookMark List
+        private const val BOOKMARK = "bookMark"
 
         private const val USERNAME_KEY = "username"
         private const val PASSWORD_KEY = "password"

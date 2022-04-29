@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">code test</string>
+    <string name="search_hint">搜尋</string>
+    <string name="empty_text">暫無內容</string>
+    <string name="delete_all">清除全部書籤</string>
+</resources>
