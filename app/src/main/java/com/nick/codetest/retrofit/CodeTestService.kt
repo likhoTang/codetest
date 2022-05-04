@@ -1,6 +1,5 @@
 package com.nick.codetest.retrofit
 
-import android.util.Log
 import com.google.gson.Gson
 import com.nick.codetest.BuildConfig
 import com.nick.codetest.ext.runInBackground
@@ -8,10 +7,8 @@ import com.nick.codetest.retrofit.apiModel.CodeTestModel
 import com.nick.codetest.retrofit.interceptor.LoggingInterceptor
 import com.nick.codetest.retrofit.interceptor.NetInterceptor
 import com.nick.codetest.retrofit.response.SearchResponse
-import com.nick.codetest.util.JSONBuilder
 import io.reactivex.rxjava3.core.Observable
 import okhttp3.OkHttpClient
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory

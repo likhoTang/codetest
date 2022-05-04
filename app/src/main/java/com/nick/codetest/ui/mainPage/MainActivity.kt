@@ -5,10 +5,13 @@ import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.ItemAnimator
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.nick.codetest.R
 import com.nick.codetest.base.BaseActivity
 import com.nick.codetest.databinding.ActivityMainBinding
 import com.nick.codetest.ui.bookmarkPage.BookmarkActivity
+
 
 class MainActivity : BaseActivity<ActivityMainBinding,MainActivityViewModel>() {
 
@@ -31,6 +34,11 @@ class MainActivity : BaseActivity<ActivityMainBinding,MainActivityViewModel>() {
         binding.ivBookmark.setOnClickListener{
             BookmarkActivity.start(this)
         }
+
+        binding.rvMain.recyclerView.itemAnimator?.let {
+            (it as SimpleItemAnimator).supportsChangeAnimations = false
+        }
+
         binding.rvMain.adapter = rvAdapter
         binding.rvMain.layoutManager = LinearLayoutManager(this)
         binding.swipeRefreshLayout.setOnRefreshListener {

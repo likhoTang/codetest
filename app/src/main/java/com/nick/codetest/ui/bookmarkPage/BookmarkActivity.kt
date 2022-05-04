@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.nick.codetest.R
 import com.nick.codetest.application_preferences.ApplicationPreferences
 import com.nick.codetest.base.BaseActivity
@@ -46,6 +47,9 @@ class BookmarkActivity : BaseActivity<ActivityBookmarkBinding,BookmarkActivityVi
             ApplicationPreferences.getInstance(this).saveBookMarkList(arrayListOf())
         }
         val rvAdapter = MainRecyclerViewAdapter()
+        binding.rvMain.recyclerView.itemAnimator?.let {
+            (it as SimpleItemAnimator).supportsChangeAnimations = false
+        }
         binding.rvMain.adapter = rvAdapter
         binding.rvMain.layoutManager = LinearLayoutManager(this)
         binding.swipeRefreshLayout.setOnRefreshListener {
